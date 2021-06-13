@@ -25,7 +25,7 @@ class Bank(Attractions):
         super().__init__(name, cost, type, flip)
 
     def calculate_bonus_before_turn(self, user):
-        if random.randint(100) == 27:
+        if random.randint(1, 100) == 27:
             user.money += 3
             return user.money
 

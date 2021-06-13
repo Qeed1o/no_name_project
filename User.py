@@ -10,6 +10,7 @@ class User:
         self.cards = cards
         self.money = 3
         self.uid = uid
+        self.WIN = False
 
     def to_dict(self):
         return {
