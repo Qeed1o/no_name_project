@@ -72,6 +72,8 @@ def root():
     current_user_index += 1
     if current_user_index >= len(users):
         current_user_index = 0
+        for user in users:
+            user.buy_card = False
     not_current_users = [user for index, user in enumerate(users) if index != current_user_index]
     current_user = users[current_user_index]
     not_current_users_sorted = sort(not_current_users, current_user.uid)
