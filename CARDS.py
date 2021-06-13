@@ -1,11 +1,10 @@
-from BLUECARDS import WheatField, Farm, Cornfield, FlowerGarden, Vineyard, Reserve, Mine, FishingBoat, Trawler, \
-    AppleOrchard
-from GRINCARDS import DepartmentStore, Bakery, Supermarket, CreditBureaus, DemolitionCompany, FlowerShop, CheeseDiary, \
-    FurnitureFactory, WineFactory, TransportCompany, BeverageFactory, VegetableMarket, GroceryWarehouse
-from REDCARDS import SushiBar, Cafe, Restaurant, Pizzeria, BurgerJoint, Eatery, LuxuryBar
-from VIOLETCARDS import Stadium, Telecentre, BusinessCenter, Publishing, BuildingRepairCompany, TaxService, VentureFund, \
-    ConcertCenter, Park
+from BLUECARDS import *
+from GRINCARDS import *
+from REDCARDS import *
+from VIOLETCARDS import *
+from ORANGECARDS import *
 from Card import CARD_TYPE
+
 
 CARDS = {
     'B1': WheatField(name="Пшеничное поле", cost=1, roll=[1], type=CARD_TYPE.get('Синяя')),
@@ -20,7 +19,7 @@ CARDS = {
     'B10': AppleOrchard(name='Яблоневый сад', cost=3, roll=[10], type=CARD_TYPE.get('Синяя')),
 
     'G1': DepartmentStore(name="Универмаг", cost=1, roll=[2], type=CARD_TYPE.get('Зеленая')),
-    'G2': Bakery(name="Пекарня", cost=1, roll=[2], type=CARD_TYPE.get('Зеленая')),
+    'G2': Bakery(name="Пекарня", cost=1, roll=[2, 3], type=CARD_TYPE.get('Зеленая')),
     'G3': Supermarket(name="Супермаркет", cost=2, roll=[4], type=CARD_TYPE.get('Зеленая')),
     'G5': CreditBureaus(name="Кредитное бюро", cost=0, roll=[5, 6], type=CARD_TYPE.get('Зеленая')),
     'G4': DemolitionCompany(name="Компания по сносу зданий", cost=2, roll=[4],
@@ -53,5 +52,15 @@ CARDS = {
     'V6': TaxService(name="Налоговая", cost=4, roll=[8, 9], type=CARD_TYPE.get('Фиолетовая')),
     'V7': VentureFund(name="Венчурный фонд", cost=1, roll=[10], type=CARD_TYPE.get('Фиолетовая')),
     'V8': ConcertCenter(name="Концерт центр", cost=7, roll=[10], type=CARD_TYPE.get('Фиолетовая')),
-    'V9': Park(name="Парк", cost=3, roll=[11, 12, 13], type=CARD_TYPE.get('Фиолетовая'))
+    'V9': Park(name="Парк", cost=3, roll=[11, 12, 13], type=CARD_TYPE.get('Фиолетовая')),
+
+    'O1': Townhall(name="Ратуша", cost=0, type=CARD_TYPE.get('Оранжевая'), flip=True),
+    'O2': Port(name="Порт", cost=2, type=CARD_TYPE.get('Оранжевая'), flip=False),
+    'O3': Bank(name="Банк", cost=0, type=CARD_TYPE.get('Оранжевая'), flip=True),
+    'O4': Railwaystation(name="Вокзал", cost=4, type=CARD_TYPE.get('Оранжевая'), flip=False),
+    'O5': Mall(name="Торговый центр", cost=10, type=CARD_TYPE.get('Оранжевая'), flip=False),
+    'O6': TVTower(name="Телебашня", cost=16, type=CARD_TYPE.get('Оранжевая'), flip=False),
+    'O7': AmusementPark(name="Парк развлечений", cost=22, type=CARD_TYPE.get('Оранжевая'), flip=False),
+    'O8': Waterpark(name="Аквапарк", cost=22, type=CARD_TYPE.get('Оранжевая'), flip=False),
+    'O9': Airport(name="Аэропорт", cost=30, type=CARD_TYPE.get('Оранжевая'), flip=False)
 }

@@ -2,6 +2,8 @@ from Card import Card
 import random
 
 # BLUE
+
+
 class WheatField(Card):
     def __init__(self, name: str, cost: int, roll: list, type: int):
         super().__init__(name, cost, roll, type)
@@ -23,7 +25,10 @@ class Cornfield(Card):
         super().__init__(name, cost, roll, type)
 
     def calculate_bonus(self, user):
-        return 1
+        if len(user.attractions) <= 2:
+            return 1
+        else:
+            return 0
 
 
 class FlowerGarden(Card):
@@ -63,7 +68,10 @@ class FishingBoat(Card):
         super().__init__(name, cost, roll, type)
 
     def calculate_bonus(self, user):
-        return 3
+        if "O2" in user.attractions:
+            return 3
+        else:
+            return 0
 
 
 class Trawler(Card):
@@ -71,7 +79,11 @@ class Trawler(Card):
         super().__init__(name, cost, roll, type)
 
     def calculate_bonus(self, user):
-        return random.randint(2, 12)
+        names = [attraction.name for attraction in user.attractions]
+        if "Порт" in names:
+            return random.randint(2, 12)
+        else:
+            return 0
 
 
 class AppleOrchard(Card):
