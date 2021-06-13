@@ -13,12 +13,12 @@ app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
 
 first_user = User(name="test1", cards=[CARDS.get("B1"), CARDS.get("B2")], attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=1)
-second_user = User(name="test2", cards=[CARDS.get("R7"), CARDS.get("B4")], attractions=[CARDS.get("O1"), CARDS.get("O1")], uid=2)
-# third_user = User(name="test3", cards=[CARDS.get("B5"), CARDS.get("B9")], attractions=[CARDS.get("O1")], uid=3)
-# fourth_user = User(name="test4", cards=[CARDS.get("B7"), CARDS.get("B8")], attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=4)
+second_user = User(name="test2", cards=[CARDS.get("B3"), CARDS.get("B4")], attractions=[CARDS.get("O1"), CARDS.get("O1")], uid=2)
+third_user = User(name="test3", cards=[CARDS.get("B5"), CARDS.get("B9")], attractions=[CARDS.get("O1")], uid=3)
+fourth_user = User(name="test4", cards=[CARDS.get("B7"), CARDS.get("B8")], attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=4)
 current_user_index = 0
 last_roll = None
-users = [first_user, second_user]#, third_user, fourth_user]
+users = [first_user, second_user, third_user, fourth_user]
 
 
 def make_response():
@@ -27,7 +27,7 @@ def make_response():
     result = {'roll': last_roll, 'users': []}
     for index, user in enumerate(users):
         user_result = user.to_dict()
-        result.get('users').append(dict(user_result, **{'turn': index == current_user_index}))
+        result.get('users').append(dict(user_result, **{'turn': index == current_user_index-1}))
     return json.dumps(result, ensure_ascii=False, indent=2)
 
 @app.route('/add_user/<userID>')
@@ -77,10 +77,10 @@ def root():
     roll = random.randint(12, 12)
     last_roll = roll
     for index, user in enumerate(not_current_users_sorted):
-        index += 1
         user.do_move_red(roll, current_user_index == index, current_user)
 
     for index, user in enumerate(users):
+        print(current_user_index, index)
         user.do_move(roll, current_user_index == index)
 
     current_user_index += 1
