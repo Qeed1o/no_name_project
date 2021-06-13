@@ -5,6 +5,13 @@ class Attractions:
         self.type = type
         self.flip = flip
 
+    def to_dict(self):
+        return {
+            'name': self.name,
+            'cost': self.cost,
+            'flip': self.flip
+        }
+
     def calculate_bonus_before_turn(self, user):
         pass
 

@@ -16,7 +16,8 @@ class User:
         return {
             'name': self.name,
             'money': self.money,
-            'cards': [card.to_dict() for card in self.cards]
+            'cards': [card.to_dict() for card in self.cards],
+            'attractions': [attraction.to_dict() for attraction in self.attractions]
         }
 
     def add_card(self, card: Card):

@@ -19,7 +19,7 @@ CARDS = {
     'B10': AppleOrchard(name='Яблоневый сад', cost=3, roll=[10], type=CARD_TYPE.get('Синяя')),
 
     'G1': DepartmentStore(name="Универмаг", cost=1, roll=[2], type=CARD_TYPE.get('Зеленая')),
-    'G2': Bakery(name="Пекарня", cost=1, roll=[2], type=CARD_TYPE.get('Зеленая')),
+    'G2': Bakery(name="Пекарня", cost=1, roll=[2, 3], type=CARD_TYPE.get('Зеленая')),
     'G3': Supermarket(name="Супермаркет", cost=2, roll=[4], type=CARD_TYPE.get('Зеленая')),
     'G5': CreditBureaus(name="Кредитное бюро", cost=0, roll=[5, 6], type=CARD_TYPE.get('Зеленая')),
     'G4': DemolitionCompany(name="Компания по сносу зданий", cost=2, roll=[4],

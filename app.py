@@ -12,16 +12,11 @@ app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
 
-first_user = User(name="test1", cards=[CARDS.get("B1"), CARDS.get("B2")],
-                  attractions=[CARDS.get("O1"), CARDS.get("O3"), CARDS.get("O4"), CARDS.get("O5"), CARDS.get("O6"), CARDS.get("O7"), CARDS.get("O8"), CARDS.get("O9")], uid=1)
-second_user = User(name="test2", cards=[CARDS.get("B3"), CARDS.get("B4")],
-                   attractions=[CARDS.get("O1"), CARDS.get("O1")], uid=2)
-third_user = User(name="test3", cards=[CARDS.get("B5"), CARDS.get("B9")], attractions=[CARDS.get("O1")], uid=3)
-fourth_user = User(name="test4", cards=[CARDS.get("B7"), CARDS.get("B8")],
-                   attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=4)
+first_user = User(name="Серёжа", cards=[CARDS.get("G2"), CARDS.get("B1")], attractions=[CARDS.get("O1")], uid=1)
+second_user = User(name="Никитка", cards=[CARDS.get("G2"), CARDS.get("B1")], attractions=[CARDS.get("O1")], uid=2)
 current_user_index = 0
 last_roll = None
-users = [first_user, second_user, third_user, fourth_user]
+users = [first_user, second_user]
 
 
 def make_response():
@@ -37,13 +32,21 @@ def make_response():
 @app.route('/add_user/<userID>')
 def add_user(userID):
     global users
-    users.append(User(name=userID, cards=[CARDS.get("B1"), CARDS.get("G2")], attractions=[CARDS.get("O1")]))
+    users.append(User(name=userID, cards=[CARDS.get("B1"), CARDS.get("G2")], attractions=[CARDS.get("O1")], uid=len(users)))
+    return Response(make_response(), mimetype="application/json")
 
 
 @app.route('/users')
 def get_users():
     return Response(make_response(), mimetype="application/json")
 
+
+@app.route('/cards')
+def get_cards():
+    result = []
+    for key, value in CARDS.items():
+        result.append(dict(value.to_dict(), **{'id': key}))
+    return Response(json.dumps(result, ensure_ascii=False), mimetype="application/json")
 
 @app.route('/')
 def root():
