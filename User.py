@@ -27,6 +27,7 @@ class User:
     def do_move(self, roll: int, turn: bool):
         for attraction in self.attractions:
             attraction.calculate_bonus_before_turn(self)
+        self.buy_card = False
         for card in self.cards:
             if roll in card.roll and turn is True and card.type == CARD_TYPE.get("Зеленая") and card.closed_for_repairs is False:
                 self.money += card.calculate_bonus(self.cards)
