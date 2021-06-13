@@ -21,6 +21,7 @@ class Card:
             'name': self.name.encode().decode('utf-8'),
             'cost': self.cost,
             'roll': self.roll,
+            'type': self.type
         }
 
 
