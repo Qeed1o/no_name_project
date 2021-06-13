@@ -2,6 +2,8 @@ from Card import Card
 import random
 
 # BLUE
+
+
 class WheatField(Card):
     def __init__(self, name: str, cost: int, roll: list, type: int):
         super().__init__(name, cost, roll, type)
