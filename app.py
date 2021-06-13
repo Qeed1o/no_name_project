@@ -12,11 +12,11 @@ app = Flask(__name__)
 app.config['JSONIFY_PRETTYPRINT_REGULAR'] = True
 CORS(app)
 
-first_user = User(name="test1", cards=[CARDS.get("B1"), CARDS.get("G12")], attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=1)
-second_user = User(name="test2", cards=[CARDS.get("R3"), CARDS.get("R4")], attractions=[CARDS.get("O1"), CARDS.get("O1")], uid=2)
-third_user = User(name="test3", cards=[CARDS.get("R5"), CARDS.get("R6")], attractions=[CARDS.get("O1")], uid=3)
-fourth_user = User(name="test4", cards=[CARDS.get("R7"), CARDS.get("R7")], attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=4)
-current_user_index = -1
+first_user = User(name="test1", cards=[CARDS.get("B1"), CARDS.get("B2")], attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=1)
+second_user = User(name="test2", cards=[CARDS.get("B3"), CARDS.get("B4")], attractions=[CARDS.get("O1"), CARDS.get("O1")], uid=2)
+third_user = User(name="test3", cards=[CARDS.get("B5"), CARDS.get("B9")], attractions=[CARDS.get("O1")], uid=3)
+fourth_user = User(name="test4", cards=[CARDS.get("B7"), CARDS.get("B8")], attractions=[CARDS.get("O1"), CARDS.get("O2"), CARDS.get("O5")], uid=4)
+current_user_index = 0
 last_roll = None
 users = [first_user, second_user, third_user, fourth_user]
 
@@ -28,7 +28,7 @@ def make_response():
     for index, user in enumerate(users):
         user_result = user.to_dict()
         result.get('users').append(dict(user_result, **{'turn': index == current_user_index}))
-    return json.dumps(result)
+    return json.dumps(result, ensure_ascii=False, indent=2)
 
 @app.route('/add_user/<userID>')
 def add_user(userID):
@@ -69,11 +69,7 @@ def root():
     global current_user_index
     global last_roll
     # pv = current_user_index
-    current_user_index += 1
-    if current_user_index >= len(users):
-        current_user_index = 0
-        for user in users:
-            user.buy_card = False
+
     not_current_users = [user for index, user in enumerate(users) if index != current_user_index]
     current_user = users[current_user_index]
     not_current_users_sorted = sort(not_current_users, current_user.uid)
@@ -90,6 +86,8 @@ def root():
     current_user_index += 1
     if current_user_index >= len(users):
         current_user_index = 0
+        for user in users:
+            user.buy_card = False
     return Response(make_response(), mimetype="application/json")
 
 

@@ -30,7 +30,7 @@ class User:
         self.buy_card = False
         for card in self.cards:
             if roll in card.roll and turn is True and card.type == CARD_TYPE.get("Зеленая") and card.closed_for_repairs is False:
-                self.money += card.calculate_bonus(self.cards)
+                self.money += card.calculate_bonus(self)
                 if "O5" in self.attractions:
                     self.money += 1
                 print("%s карточка отработала!!!" % card.name, roll, turn)

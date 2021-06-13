@@ -8,9 +8,9 @@ class SushiBar(Card):
         super().__init__(name, cost, roll, type)
 
     def calculate_bonus_red(self, user, cur_money):
-        if "O2" in user.attractions and cur_money >= 3:
+        if "Порт" in user.attractions and cur_money >= 3:
             return 3
-        elif "O2" in user.attractions and cur_money > 0:
+        elif "Порт" in user.attractions and cur_money > 0:
             return cur_money
         else:
             return 0

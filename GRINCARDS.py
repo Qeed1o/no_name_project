@@ -50,7 +50,7 @@ class FlowerShop(Card):
     def calculate_bonus(self, user):
         counter = 0
         for card in user:
-            if card.key == "B4":
+            if card.key == "Цветник":
                 counter += 1
         return counter
 
@@ -62,7 +62,7 @@ class CheeseDiary(Card):
     def calculate_bonus(self, user):
         counter = 0
         for card in user:
-            if card.key == "B2":
+            if card.key == "Ферма":
                 counter += 1
         return counter * 3
 
@@ -74,7 +74,7 @@ class FurnitureFactory(Card):
     def calculate_bonus(self, user):
         counter = 0
         for card in user:
-            if card.key == "B6" or "B7":
+            if card.key == "Заповедник" or "Рудник":
                 counter += 1
         return counter * 3
 
@@ -86,7 +86,7 @@ class WineFactory(Card):
     def calculate_bonus(self, user):
         counter = 0
         for card in user:
-            if card.key == "B5":
+            if card.name == "Виноградник":
                 counter += 1
         return counter * 6
 
@@ -117,8 +117,8 @@ class VegetableMarket(Card):
 
     def calculate_bonus(self, user):
         counter = 0
-        for card in user:
-            if card.key == "B1" or "B3" or "B4" or "B5":
+        for card in user.cards:
+            if card.name == "Пшеничное поле" or "Кукурузное поле" or "Цветник" or "Виноградник":
                 counter += 1
         return counter * 2
 
